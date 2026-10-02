@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cognitive Accessibility Kit</title>
+<meta name="description" content="A free, open toolkit for designing, auditing and writing digital products for neurodivergent and cognitively diverse people. 16 profiles, 85 audit checks, plain-language copy rules, CSS tokens.">
+<meta property="og:title" content="Cognitive Accessibility Kit">
+<meta property="og:description" content="Design, audit and write for neurodivergent people. 16 profiles, 85 audit checks, copy rules and CSS tokens. Free and open.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+/* This page follows the kit's own baseline: left-aligned text, 65ch measure,
+   line height 1.6, no motion, visible focus, 44px targets, colour never alone. */
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --fg: #1d1d1b;
+  --muted: #55554f;
+  --line: #d9d6cc;
+  --accent: #1f4fbf;
+  --accent-bg: #e9eefb;
+  --mark: #fff3c4;
+  --font: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --measure: 65ch;
+  --target-min: 44px;
+  --focus: 3px solid var(--accent);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161614;
+    --surface: #1f1f1c;
+    --fg: #ecebe6;
+    --muted: #b4b2aa;
+    --line: #3a3934;
+    --accent: #9db8ff;
+    --accent-bg: #23293a;
+    --mark: #4a4120;
+  }
+}
+* { box-sizing: border-box; }
+html { font-size: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+.skip {
+  position: absolute; left: 1rem; top: -4rem;
+  background: var(--surface); color: var(--fg);
+  padding: 0.75rem 1rem; border: 2px solid var(--accent);
+}
+.skip:focus { top: 1rem; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 0.2em; }
+a:focus-visible, summary:focus-visible { outline: var(--focus); outline-offset: 2px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding-inline: 20px; padding-block: 0 4rem; }
+header.top {
+  border-bottom: 1px solid var(--line);
+  padding-block: 1rem;
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: center; justify-content: space-between;
+}
+header.top nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; }
+header.top nav a { display: inline-flex; align-items: center; min-height: var(--target-min); }
+.brand { font-weight: 700; }
+h1, h2, h3 { line-height: 1.25; text-wrap: balance; }
+h1 { font-size: clamp(2.25rem, 6vw, 3.5rem); margin: 3rem 0 1rem; max-width: 18ch; }
+h2 { font-size: 1.75rem; margin: 0 0 1rem; }
+h3 { font-size: 1.25rem; margin: 0 0 0.5rem; }
+p, li { max-width: var(--measure); }
+p { margin: 0 0 1.5em; }
+.lede { font-size: 1.3rem; color: var(--fg); }
+.cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-block: 1.5rem 0.5rem; }
+.btn {
+  display: inline-flex; align-items: center; min-height: var(--target-min);
+  padding: 0.5rem 1.25rem; border: 2px solid var(--accent);
+  font-weight: 700; text-decoration: none;
+}
+.btn.primary { background: var(--accent); color: var(--bg); }
+.btn.secondary { background: transparent; color: var(--accent); }
+section { border-top: 1px solid var(--line); padding-block: 3rem 1rem; }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2.5rem 0 1rem; padding: 0; list-style: none; }
+.facts li { background: var(--surface); border: 1px solid var(--line); padding: 1rem 1.25rem; }
+.facts strong { display: block; font-size: 2rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+ol.rules { padding-left: 2rem; display: grid; gap: 0.5rem; }
+ol.rules li::marker { font-weight: 700; color: var(--accent); }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+.card { background: var(--surface); border: 1px solid var(--line); padding: 1.25rem; min-width: 0; }
+.card p { margin-bottom: 0.75em; }
+.card .file { font-family: var(--mono); font-size: 0.95rem; }
+.start { list-style: none; padding: 0; display: grid; gap: 0.75rem; }
+.start li { background: var(--surface); border: 1px solid var(--line); padding: 0.75rem 1rem; }
+.start .q { font-weight: 700; display: block; }
+.stance { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.stance div { border-left: 4px solid var(--accent); padding-left: 1rem; }
+pre {
+  background: var(--surface); border: 1px solid var(--line);
+  padding: 1rem; overflow-x: auto; font-family: var(--mono); font-size: 0.95rem; line-height: 1.5;
+}
+code { font-family: var(--mono); font-size: 0.95em; }
+.try li { margin-bottom: 0.25rem; }
+.note { background: var(--mark); padding: 0.75rem 1rem; max-width: var(--measure); }
+footer { border-top: 1px solid var(--line); padding-block: 2rem; color: var(--muted); font-size: 1rem; }
+footer p { margin-bottom: 0.5em; }
+@media (prefers-reduced-motion: no-preference) {
+  /* Intentionally empty: this page has no motion to reduce. */
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+  <header class="top">
+    <span class="brand">Cognitive Accessibility Kit</span>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#rules">Twelve rules</a></li>
+        <li><a href="#inside">What's inside</a></li>
+        <li><a href="#claude">Use with Claude</a></li>
+        <li><a href="https://github.com/bairamilona/cognitive-accessibility-kit">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <h1>Design for the way people actually think</h1>
+    <p class="lede">A free, open toolkit for designing, auditing and writing digital products for neurodivergent and cognitively diverse people.</p>
+    <p>Most accessibility reviews check contrast, alt text and keyboard focus, then stop. That leaves out the largest group of disabled users. This kit covers what comes after those checks: attention, memory, reading, numbers, stress and trust.</p>
+    <div class="cta">
+      <a class="btn primary" href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/audit-checklist.md">Open the audit checklist</a>
+      <a class="btn secondary" href="https://github.com/bairamilona/cognitive-accessibility-kit">View on GitHub</a>
+    </div>
+
+    <ul class="facts" aria-label="The kit in numbers">
+      <li><strong>16</strong> profiles with Do and Don't tables</li>
+      <li><strong>85</strong> audit checks in 14 categories</li>
+      <li><strong>28</strong> WCAG 2.2 criteria mapped to cognitive needs</li>
+      <li><strong>8</strong> W3C COGA objectives as the spine</li>
+    </ul>
+
+    <section id="rules" aria-labelledby="rules-h">
+      <h2 id="rules-h">The twelve rules, if you only read one thing</h2>
+      <p>These serve every profile at once. If a project can only do a few things, do these.</p>
+      <ol class="rules">
+        <li>One primary action per screen.</li>
+        <li>Plain language, around 9th-grade reading level or below.</li>
+        <li>Left-aligned body text. Never justify. Line length 45 to 75 characters.</li>
+        <li>Line height at least 1.5. Paragraph spacing at least twice the font size.</li>
+        <li>Never rely on colour alone. Use colour, shape and text together.</li>
+        <li>No unrequested motion. Honour <code>prefers-reduced-motion</code>.</li>
+        <li>Never require recall. Carry values forward and let people paste anything.</li>
+        <li>No time limits. If one is unavoidable, warn, allow more time and never wipe data.</li>
+        <li>Errors name the field, say what is wrong and say how to fix it.</li>
+        <li>Say what happens next, before the action and after it.</li>
+        <li>Consistency beats cleverness.</li>
+        <li>Give control instead of choosing for people.</li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="start-h">
+      <h2 id="start-h">Start here</h2>
+      <ul class="start">
+        <li><span class="q">Reviewing an existing product?</span><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/audit-checklist.md">Use the audit checklist</a></li>
+        <li><span class="q">Writing UI copy or error messages?</span><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/copy-guide.md">Use the copy guide</a></li>
+        <li><span class="q">Building components or a design system?</span><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/design-tokens.md">Copy the design tokens</a></li>
+        <li><span class="q">Need to convince a stakeholder?</span><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/wcag-map.md">Show the WCAG and legal map</a></li>
+        <li><span class="q">Designing for one specific group?</span><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/profiles.md">Read that profile</a></li>
+      </ul>
+    </section>
+
+    <section id="inside" aria-labelledby="inside-h">
+      <h2 id="inside-h">What's inside</h2>
+      <p>Every file is plain Markdown. Read it, print it, paste it into your design system or hand it to your team.</p>
+      <div class="grid">
+        <div class="card"><h3>Profiles</h3><p class="file">profiles.md</p><p>ADHD, autism, dyslexia, dyscalculia, colour blindness, legibility, D/deaf and hard of hearing, dementia, older adults, children, teenagers, anxiety, stress, mental health, trauma and left-handed users. Each has Do and Don't tables and the signs to look for in an audit.</p><p><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/profiles.md">Read the profiles</a></p></div>
+        <div class="card"><h3>Audit checklist</h3><p class="file">audit-checklist.md</p><p>85 numbered checks for attention, memory, time pressure, language, numbers, navigation, errors, help, sensory load, control, input and ethics. Each check maps to a COGA objective or a WCAG criterion.</p><p><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/audit-checklist.md">Run an audit</a></p></div>
+        <div class="card"><h3>Copy guide</h3><p class="file">copy-guide.md</p><p>Plain language, button labels, error messages and numbers in copy, with before and after tables.</p><p><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/copy-guide.md">Rewrite your copy</a></p></div>
+        <div class="card"><h3>Design tokens</h3><p class="file">design-tokens.md</p><p>Copy-paste CSS tokens and a base stylesheet, plus rules for forms, navigation and data display.</p><p><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/design-tokens.md">Get the tokens</a></p></div>
+        <div class="card"><h3>WCAG and legal map</h3><p class="file">wcag-map.md</p><p>28 WCAG 2.2 criteria rated by cognitive weight, with links to the European Accessibility Act, EN 301 549 and Section 508 for the business case.</p><p><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/wcag-map.md">Make the case</a></p></div>
+        <div class="card"><h3>Research guide</h3><p class="file">research-guide.md</p><p>How to recruit and test with neurodivergent participants without harming them.</p><p><a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/research-guide.md">Plan your research</a></p></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="stance-h">
+      <h2 id="stance-h">Three things this kit insists on</h2>
+      <div class="stance">
+        <div><h3>A difference, not a deficit</h3><p>Estimates put 15 to 40 percent of people as having neurodivergent traits. Traits are spread across everyone. Anyone under stress has trouble with working memory.</p></div>
+        <div><h3>No hidden "modes"</h3><p>A dyslexia mode buried in settings is a way of not fixing the product. Make the accessible version the default, then add user control on top.</p></div>
+        <div><h3>Test with real people</h3><p>Guidelines reduce obvious harm. They do not replace testing with neurodivergent people.</p></div>
+      </div>
+    </section>
+
+    <section id="claude" aria-labelledby="claude-h">
+      <h2 id="claude-h">Use it with Claude</h2>
+      <p>The <code>neurodiversity-design</code> folder is an installable skill for Claude. Once installed, Claude uses it when you ask for an accessibility review, UI copy or design work for any of the 16 profiles.</p>
+      <pre><code>git clone https://github.com/bairamilona/cognitive-accessibility-kit.git
+cd cognitive-accessibility-kit
+./build.sh   # produces dist/neurodiversity-design.skill</code></pre>
+      <p>In the Claude desktop app, open Settings, then Capabilities, and add the <code>.skill</code> file. In Claude Code, copy the <code>neurodiversity-design</code> folder into <code>~/.claude/skills/</code>.</p>
+      <h3>Try asking</h3>
+      <ul class="try">
+        <li>"Review this signup flow for cognitive accessibility."</li>
+        <li>"Rewrite these error messages so they are actually usable."</li>
+        <li>"Our checkout has a 10-minute timer. What is the case for removing it?"</li>
+        <li>"Make this dashboard work for someone with dyscalculia."</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="sources-h">
+      <h2 id="sources-h">Built from primary sources</h2>
+      <ul>
+        <li><a href="https://www.w3.org/TR/coga-usable/">Making Content Usable for People with Cognitive and Learning Disabilities</a>, W3C COGA</li>
+        <li><a href="https://accessibility.blog.gov.uk/2016/09/02/dos-and-donts-on-designing-for-accessibility/">Dos and don'ts on designing for accessibility</a>, Karwai Pun, UK Home Office</li>
+        <li><a href="https://designnotes.blog.gov.uk/2022/11/28/designing-for-people-with-dyscalculia-and-low-numeracy/">Designing for people with dyscalculia and low numeracy</a>, DWP and HMRC</li>
+        <li><a href="https://stephaniewalter.design/blog/neurodiversity-and-ux-essential-resources-for-cognitive-accessibility/">Neurodiversity and UX: Essential Resources</a>, Stéphanie Walter</li>
+        <li><a href="https://www.smashingmagazine.com/2025/06/designing-for-neurodiversity/">Designing For Neurodiversity</a>, Vitaly Friedman, Smashing Magazine</li>
+        <li><a href="https://neurodiversity.design/">Neurodiversity Design System</a>, Will Soward</li>
+      </ul>
+      <p>The full annotated list, with prevalence figures and citations, is in <a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/neurodiversity-design/references/sources.md">sources.md</a>.</p>
+    </section>
+
+    <section aria-labelledby="contribute-h">
+      <h2 id="contribute-h">Help improve it</h2>
+      <p>Corrections, missing profiles and better sources are welcome, especially from neurodivergent people. If something here is wrong about your own neurotype, that is a bug.</p>
+      <div class="cta">
+        <a class="btn secondary" href="https://github.com/bairamilona/cognitive-accessibility-kit/issues/new/choose">Report a correction</a>
+        <a class="btn secondary" href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/CONTRIBUTING.md">Read the contributing guide</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Made by <a href="https://www.linkedin.com/in/bairamilona/">Ilona Bairam</a>, digital product designer.</p>
+    <p>Licensed <a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/LICENSE">CC BY-NC-SA 4.0</a>. Use it freely inside your organisation, including a commercial one. Do not resell it. <a href="https://github.com/bairamilona/cognitive-accessibility-kit/blob/main/ATTRIBUTION.md">Attribution</a>.</p>
+  </footer>
+</div>
+</body>
+</html>

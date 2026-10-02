@@ -4,6 +4,8 @@ A practical toolkit for designing, auditing, and writing digital products for ne
 
 Most accessibility work checks contrast, alt text, and keyboard focus, then stops. That leaves out the largest group of disabled users. This kit covers what happens after those checks.
 
+**Website:** https://bairamilona.github.io/cognitive-accessibility-kit/
+
 It ships as a [Claude skill](#use-it-with-claude), but **every file is plain Markdown and works on its own** — read it, print it, paste it into your design system, hand it to your team.
 
 ---

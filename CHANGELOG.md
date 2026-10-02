@@ -28,6 +28,10 @@ First public release.
 
 ## Unreleased
 
+### Added
+
+- `docs/index.html` — a single-page project website for GitHub Pages. The page follows the kit's own baseline: left-aligned text, 65ch measure, line height 1.6, no motion, visible focus, 44px targets, light and dark themes.
+
 Candidates for the next version, contributions welcome:
 
 - Profiles for dyspraxia, aphasia, acquired brain injury, epilepsy and photosensitivity, low vision, screen reader users.
