@@ -1,5 +1,7 @@
 # Cognitive Accessibility Kit
 
+**[Download the PDF guide, live demo and skill →](https://github.com/bairamilona/cognitive-accessibility-kit/releases/latest)** · [Try the live demo](https://claude.ai/artifact/5zAnEaDzoehudk5m9cDtXn)
+
 A practical toolkit for designing, auditing, and writing digital products for neurodivergent and cognitively diverse people.
 
 Most accessibility work checks contrast, alt text, and keyboard focus, then stops. That leaves out the largest group of disabled users. This kit covers what happens after those checks.
